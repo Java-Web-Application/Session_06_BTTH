@@ -29,7 +29,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public String detailBook(@PathVariable int id, Model model) {
+    public String detailBook(@PathVariable("id") int id, Model model) {
         Book book = books.stream()
                 .filter(b -> b.getId() == id)
                 .findFirst()
@@ -38,3 +38,4 @@ public class BookController {
         return "books/detail";
     }
 }
+//http://localhost:8080/books
