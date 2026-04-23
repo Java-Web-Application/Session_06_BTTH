@@ -3,45 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Danh sách sách</title>
-  <style>
-    table { width: 80%; margin: 20px auto; border-collapse: collapse; }
-    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    th { background-color: #f4f4f4; }
-    .high-price { background-color: #ffff99; color: #d9534f; font-weight: bold; }
-    .header-custom { color: white; padding: 10px; text-align: center; }
-  </style>
 </head>
 <body>
 
-<div th:fragment="myHeader(pageTitle)" class="header-custom">
-  <h1 th:text="${pageTitle}">Tiêu đề mặc định</h1>
+<div th:fragment="myHeader(pageTitle)">
+  <h1 th:text="${pageTitle}">Tiêu đề</h1>
+  <hr>
 </div>
 
-<div th:replace=":: myHeader('QUản lý sách')"></div>
+<div th:replace=":: myHeader('DANH SÁCH SÁCH')"></div>
 
-<main style="text-align: center;">
-  <h2>Danh mục sách hiện có</h2>
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Tên sách</th>
-      <th>Giá bán</th>
-      <th>Hành động</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="b : ${list}" th:classappend="${b.price >= 300000} ? 'high-price' : ''">
-      <td th:text="${b.id}">1</td>
-      <td th:text="${b.title}">Tên sách</td>
-      <td th:text="${#numbers.formatDecimal(b.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">0</td>
-      <td>
-        <a th:href="@{/books/{id}(id=${b.id})}">Chi tiết</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</main>
+<table border="1" cellpadding="10" style="border-collapse: collapse;">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Tên sách</th>
+    <th>Giá bán</th>
+    <th>Hành động</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="b : ${list}"
+      th:style="${b.price >= 300000} ? 'background-color: yellow; font-weight: bold;' : ''">
+    <td th:text="${b.id}"></td>
+    <td th:text="${b.title}"></td>
+    <td th:text="${b.price} + ' VNĐ'"></td>
+    <td>
+      <a th:href="@{/books/{id}(id=${b.id})}">Xem chi tiết</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
 
 </body>
 </html>
