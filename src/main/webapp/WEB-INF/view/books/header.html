@@ -1,0 +1,15 @@
+<div th:fragment="common-header(title)">
+    <header style="background-color: #f8f9fa; padding: 20px; text-align: center; border-bottom: 2px solid #dee2e6;">
+        <h1 th:text="${title}">Header</h1>
+        <nav>
+            <a th:href="@{/WEB-INF/view/books}">Trang chủ</a> |
+            <a href="#">Quản lý sách</a>
+        </nav>
+    </header>
+</div>
+
+<div th:fragment="common-footer">
+    <footer style="text-align: center; margin-top: 50px;">
+        <p>Rikkei</p>
+    </footer>
+</div>

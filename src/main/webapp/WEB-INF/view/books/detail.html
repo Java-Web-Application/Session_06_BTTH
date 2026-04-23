@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <style>
+        .container { width: 50%; margin: 50px auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .info-row { margin-bottom: 15px; font-size: 18px; }
+        .label { font-weight: bold; color: #555; width: 120px; display: inline-block; }
+        .back-btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; }
+        .back-btn:hover { background-color: #0056b3; }
+        .error-msg { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div th:replace="books/list :: myHeader('CHI TIẾT CUỐN SÁCH')"></div>
+
+<div class="container">
+    <div th:if="${book != null}">
+        <div class="info-row">
+            <span class="label">Mã số:</span>
+            <span th:text="${book.id}">000</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Tên sách:</span>
+            <span th:text="${book.title}">Tên sản phẩm</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Tác giả:</span>
+            <span th:text="${book.author}">Tên tác giả</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Giá bán:</span>
+            <span th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">0</span>
+        </div>
+    </div>
+
+    <div th:if="${book == null}">
+        <p class="error-msg">Rất tiếc, không tìm thấy thông tin cuốn sách này!</p>
+    </div>
+
+    <a th:href="@{/books}" class="back-btn">← Quay lại danh sách</a>
+</div>
+
+</body>
+</html>
